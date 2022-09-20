@@ -1,21 +1,48 @@
 package com.javapro.lesson10;
 
-public class FileLoggerConfigurationLoader {
+import com.javapro.lesson10.api.FileLoggerConfigurationLoaderAvaible;
+import java.io.FileReader;
+import java.io.IOException;
 
-    private final String FILE_PATH = "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt";
+public class FileLoggerConfigurationLoader implements FileLoggerConfigurationLoaderAvaible {
 
-    public FileLoggerConfiguration load(){
+  private final String FILE_PATH = "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt";
 
-        return parsConfigurationString(getStringFromFile());
+  public FileLoggerConfiguration load() {
+
+    return parsConfigurationString();
+  }
+
+  @Override
+  public String getStringFromFile() {
+    StringBuilder s = new StringBuilder();
+    try (FileReader reader = new FileReader(
+        "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt")) {
+      int c;
+      while ((c = reader.read()) != -1) {
+        s.append((char) c);
+      }
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
     }
+    return s.toString();
+  }
 
-    private String getStringFromFile(){
-
-        return "";
+  @Override
+  public FileLoggerConfiguration parsConfigurationString() {
+    FileLoggerConfiguration configuration = new FileLoggerConfiguration();
+    String[] str = getStringFromFile().split("\n");
+    for (int i = 0; i < str.length; i++) {
+      int index = str[i].indexOf(":");
+      String key = str[i].substring(0, index);
+      String value = str[i].substring(index + 1);
+      switch (key) {
+        case "FILE" -> configuration.setNameFile(value.trim());
+        case "LEVEL"-> configuration.setLevel(value.trim());
+          case "MAX-SIZE"->configuration.setMaxSizeByte(value.trim());
+            case "FORMAT"->configuration.setNameFormat(value.trim());
+      }
     }
-    private FileLoggerConfiguration parsConfigurationString(String str){
-        FileLoggerConfiguration configuration  = new FileLoggerConfiguration();
-        str.split("\n");
-        return configuration;
-    }
+    return configuration;
+  }
 }

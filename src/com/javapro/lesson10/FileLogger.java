@@ -28,7 +28,6 @@ public class FileLogger implements FileLoggerAvaible {
 
         System.out.printf("[%s][%s][%s]\n", formatter.format(date), LogginLevel.DEBUG, str);
 
-
     }
 
     @Override
