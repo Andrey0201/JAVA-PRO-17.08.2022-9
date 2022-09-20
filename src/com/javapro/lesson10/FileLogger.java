@@ -51,7 +51,7 @@ public class FileLogger implements FileLoggerAvaible {
     }
 
     private File getFile() {
-        File file = new File("D:\\Java\\JAVA-PRO\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\"
+        File file = new File("D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\"
                 + "file", totalNameFile);
         try {
             file.createNewFile();
