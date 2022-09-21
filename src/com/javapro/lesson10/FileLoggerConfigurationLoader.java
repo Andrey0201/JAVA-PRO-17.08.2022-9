@@ -1,10 +1,9 @@
 package com.javapro.lesson10;
 
-import com.javapro.lesson10.api.FileLoggerConfigurationLoaderAvaible;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileLoggerConfigurationLoader implements FileLoggerConfigurationLoaderAvaible {
+public class FileLoggerConfigurationLoader {
 
   private final String FILE_PATH = "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt";
 
@@ -13,8 +12,8 @@ public class FileLoggerConfigurationLoader implements FileLoggerConfigurationLoa
     return parsConfigurationString();
   }
 
-  @Override
-  public String getStringFromFile() {
+
+  private String getStringFromFile() {
     StringBuilder s = new StringBuilder();
     try (FileReader reader = new FileReader(
         "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt")) {
@@ -28,8 +27,8 @@ public class FileLoggerConfigurationLoader implements FileLoggerConfigurationLoa
     return s.toString();
   }
 
-  @Override
-  public FileLoggerConfiguration parsConfigurationString() {
+
+  private FileLoggerConfiguration parsConfigurationString() {
     FileLoggerConfiguration configuration = new FileLoggerConfiguration();
     String[] str = getStringFromFile().split("\n");
     for (int i = 0; i < str.length; i++) {
@@ -38,9 +37,9 @@ public class FileLoggerConfigurationLoader implements FileLoggerConfigurationLoa
       String value = str[i].substring(index + 1);
       switch (key) {
         case "FILE" -> configuration.setNameFile(value.trim());
-        case "LEVEL"-> configuration.setLevel(value.trim());
-          case "MAX-SIZE"->configuration.setMaxSizeByte(value.trim());
-            case "FORMAT"->configuration.setNameFormat(value.trim());
+        case "LEVEL" -> configuration.setLevel(value.trim());
+        case "MAX-SIZE" -> configuration.setMaxSizeByte(value.trim());
+        case "FORMAT" -> configuration.setNameFormat(value.trim());
       }
     }
     return configuration;
