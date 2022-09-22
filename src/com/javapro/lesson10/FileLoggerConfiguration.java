@@ -8,22 +8,11 @@ public class FileLoggerConfiguration {
   private LogginLevel level;
   private int maxSizeByte;
   private String nameFormat;
-  FileLoggerConfigurationLoader loader;
 
 
   public FileLoggerConfiguration() {
 
-
   }
-
-  public FileLoggerConfiguration(String nameFile, LogginLevel level, int maxSizeByte,
-      String nameFormat) {
-    this.nameFile = nameFile;
-    this.level = level;
-    this.maxSizeByte = maxSizeByte;
-    this.nameFormat = nameFormat;
-  }
-
 
   public String getNameFile() {
     return nameFile;
@@ -50,11 +39,11 @@ public class FileLoggerConfiguration {
   }
 
   public void setMaxSizeByte(String maxSizeByte) {
-    int a = 0;
+    int a;
     try {
       a = Integer.parseInt(maxSizeByte);
-   } catch (NumberFormatException e) {
-     throw new NumberFormatException(maxSizeByte);
+    } catch (NumberFormatException e) {
+      throw new NumberFormatException(maxSizeByte);
     }
     this.maxSizeByte = a;
   }
