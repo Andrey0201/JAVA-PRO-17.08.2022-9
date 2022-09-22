@@ -14,10 +14,10 @@ public class Main {
     fileLogger.debug("Что-то пошло не так");
     fileLogger.info("Информация");
     FileLoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
-    System.out.println(loader.load().getNameFile());
-    System.out.println(loader.load().getLevel());
-    System.out.println(loader.load().getMaxSizeByte());
-    System.out.println(loader.load().getNameFormat());
+//    System.out.println(loader.load().getNameFile());
+//    System.out.println(loader.load().getLevel());
+//    System.out.println(loader.load().getMaxSizeByte());
+//    System.out.println(loader.load().getNameFormat());
     System.out.println(loader.load().toString());
 
 

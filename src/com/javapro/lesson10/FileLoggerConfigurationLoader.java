@@ -16,7 +16,7 @@ public class FileLoggerConfigurationLoader {
   private String getStringFromFile() {
     StringBuilder s = new StringBuilder();
     try (FileReader reader = new FileReader(
-        "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt")) {
+        "D:\\JAVA\\JAVA-PRO\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt")) {
       int c;
       while ((c = reader.read()) != -1) {
         s.append((char) c);
