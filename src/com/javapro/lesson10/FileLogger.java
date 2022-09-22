@@ -18,17 +18,18 @@ public class FileLogger implements FileLoggerAvaible {
   Date date = new Date(System.currentTimeMillis());
   SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss");
 
-
-  String totalNameFile = configuration.getNameFile() + configuration.getNameFormat();
+  String totalNameFile =
+      configuration.getNameFile() + formatter.format(date) + configuration.getNameFormat();
 
   @Override
   public void debug(String str) {
     if (getFile().length() <= configuration.getMaxSizeByte()) {
       writeFile(str, LogginLevel.DEBUG);
     } else {
-      throw new FileMaxSizeReachedException(getFile().length(), configuration.getMaxSizeByte());
+      getFile();
+      writeFile(str, LogginLevel.DEBUG);
     }
-//    System.out.printf("[%s][%s] Сообщение: [%s]\n", formatter.format(date), LogginLevel.DEBUG, str);
+    System.out.printf("[%s][%s] Сообщение: [%s]\n", formatter.format(date), LogginLevel.DEBUG, str);
     System.out.println(getFile().length());
 
   }
@@ -38,16 +39,17 @@ public class FileLogger implements FileLoggerAvaible {
     if (getFile().length() <= configuration.getMaxSizeByte()) {
       writeFile(str, LogginLevel.INFO);
     } else {
-      throw new FileMaxSizeReachedException(getFile().length(), configuration.getMaxSizeByte());
+      getFile();
+      writeFile(str, LogginLevel.INFO);
     }
-//    System.out.printf("[%s][%s][%s]\n", formatter.format(date), LogginLevel.INFO, str);
+    System.out.printf("[%s][%s][%s]\n", formatter.format(date), LogginLevel.INFO, str);
     System.out.println(getFile().length());
 
   }
 
   private File getFile() {
     File fd = new File("D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\");
-    File file = new File(fd, totalNameFile );
+    File file = new File(fd, totalNameFile);
     try {
       file.createNewFile();
     } catch (IOException e) {
