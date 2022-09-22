@@ -10,20 +10,25 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FileLogger implements FileLoggerAvaible {
 
-  private FileLoggerConfiguration configuration = new FileLoggerConfiguration("log_",
-      LogginLevel.DEBUG,
-      500, ".txt");
+
+public class FileLogger implements FileLoggerAvaible {
+  FileLoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
+
+
+
+//  private FileLoggerConfiguration configuration = new FileLoggerConfiguration("log_",
+//      LogginLevel.DEBUG,
+//      500, ".txt");
   Date date = new Date(System.currentTimeMillis());
-  SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss");
+  SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HH-mm");
 
   String totalNameFile =
-      configuration.getNameFile() + formatter.format(date) + configuration.getNameFormat();
+      loader.load().getNameFile() +    loader.load().getNameFormat();
 
   @Override
   public void debug(String str) {
-    if (getFile().length() <= configuration.getMaxSizeByte()) {
+    if (getFile().length() <=  loader.load().getMaxSizeByte()) {
       writeFile(str, LogginLevel.DEBUG);
     } else {
       getFile();
@@ -36,7 +41,7 @@ public class FileLogger implements FileLoggerAvaible {
 
   @Override
   public void info(String str) {
-    if (getFile().length() <= configuration.getMaxSizeByte()) {
+    if (getFile().length() <=  loader.load().getMaxSizeByte()) {
       writeFile(str, LogginLevel.INFO);
     } else {
       getFile();
@@ -48,21 +53,13 @@ public class FileLogger implements FileLoggerAvaible {
   }
 
   private File getFile() {
-    File fd = new File("D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\");
-    File file = new File(fd, totalNameFile);
-    try {
-      file.createNewFile();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return file;
+    return  new File(loader.load().getNameFile()+loader.load().getNameFormat());
   }
 
   private void writeFile(String str, LogginLevel level) {
-    File file = getFile();
     String newStr = String.format("[%s][%s] Сообщение:[%s]\n", formatter.format(date), level, str);
-    if (configuration.isValidRule(level)) {
-      try (FileWriter writer = new FileWriter(file, true)) {
+    if ( loader.load().isValidRule(level)) {
+      try (FileWriter writer = new FileWriter(getFile(), true)) {
         writer.append(newStr);
       } catch (IOException e) {
         e.printStackTrace();

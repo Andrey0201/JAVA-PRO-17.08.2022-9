@@ -8,8 +8,11 @@ public class FileLoggerConfiguration {
   private LogginLevel level;
   private int maxSizeByte;
   private String nameFormat;
+  FileLoggerConfigurationLoader loader;
+
 
   public FileLoggerConfiguration() {
+
 
   }
 
@@ -37,7 +40,7 @@ public class FileLoggerConfiguration {
   public void setLevel(String level) {
     switch (level) {
       case "INFO" -> this.level = LogginLevel.INFO;
-      case "DEBAG" -> this.level = LogginLevel.DEBUG;
+      case "DEBUG" -> this.level = LogginLevel.DEBUG;
     }
 
   }
