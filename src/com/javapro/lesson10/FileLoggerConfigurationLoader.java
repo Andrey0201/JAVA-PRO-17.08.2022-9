@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class FileLoggerConfigurationLoader {
 
-  private final String FILE_PATH = "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt";
+  private final String FILE_PATH = ".\\src\\com\\javapro\\lesson10\\file\\config.txt";
 
   public FileLoggerConfiguration load() {
 
@@ -15,8 +15,7 @@ public class FileLoggerConfigurationLoader {
 
   private String getStringFromFile() {
     StringBuilder s = new StringBuilder();
-    try (FileReader reader = new FileReader(
-        "D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\config.txt")) {
+    try (FileReader reader = new FileReader(FILE_PATH)) {
       int c;
       while ((c = reader.read()) != -1) {
         s.append((char) c);
@@ -27,14 +26,13 @@ public class FileLoggerConfigurationLoader {
     return s.toString();
   }
 
-
   private FileLoggerConfiguration parsConfigurationString() {
     FileLoggerConfiguration configuration = new FileLoggerConfiguration();
     String[] str = getStringFromFile().split("\n");
-    for (int i = 0; i < str.length; i++) {
-      int index = str[i].indexOf(":");
-      String key = str[i].substring(0, index);
-      String value = str[i].substring(index + 1);
+    for (String s : str) {
+      int index = s.indexOf(":");
+      String key = s.substring(0, index);
+      String value = s.substring(index + 1);
       switch (key) {
         case "FILE" -> configuration.setNameFile(value.trim());
         case "LEVEL" -> configuration.setLevel(value.trim());
