@@ -48,11 +48,11 @@ public class FileLoggerConfiguration {
 
   public void setMaxSizeByte(String maxSizeByte) {
     int a = 0;
-//    try {
+    try {
       a = Integer.parseInt(maxSizeByte);
-//   } catch (NumberFormatException e) {
-//     throw new NumberFormatException(maxSizeByte);
-//    }
+   } catch (NumberFormatException e) {
+     throw new NumberFormatException(maxSizeByte);
+    }
     this.maxSizeByte = a;
   }
 

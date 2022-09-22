@@ -10,8 +10,8 @@ public class Main {
 
   public static void main(String[] args) {
     FileLoggerAvaible fileLogger = new FileLogger();
-//    fileLogger.debug("Что не так");
-//    fileLogger.info("Информация");
+    fileLogger.debug("Что не так");
+    fileLogger.info("Информация");
     FileLoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
     System.out.println(loader.load().getNameFile());
     System.out.println(loader.load().getLevel());
