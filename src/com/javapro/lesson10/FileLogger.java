@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class FileLogger implements FileLoggerAvaible {
 
-  private FileLoggerConfiguration configuration = new FileLoggerConfiguration("Name",
+  private FileLoggerConfiguration configuration = new FileLoggerConfiguration("log_",
       LogginLevel.DEBUG,
       500, ".txt");
   Date date = new Date(System.currentTimeMillis());
@@ -47,7 +47,7 @@ public class FileLogger implements FileLoggerAvaible {
 
   private File getFile() {
     File fd = new File("D:\\Java\\JAVA-PRO-17.08.2022-9\\src\\com\\javapro\\lesson10\\file\\");
-    File file = new File(fd, totalNameFile);
+    File file = new File(fd, totalNameFile );
     try {
       file.createNewFile();
     } catch (IOException e) {

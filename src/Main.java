@@ -4,6 +4,7 @@ import com.javapro.lesson10.api.FileLoggerAvaible;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class Main {
@@ -17,6 +18,7 @@ public class Main {
     System.out.println(loader.load().getLevel());
     System.out.println(loader.load().getMaxSizeByte());
     System.out.println(loader.load().getNameFormat());
+    System.out.println(loader.load().toString());
 
 
 

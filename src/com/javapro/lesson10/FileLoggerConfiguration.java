@@ -68,4 +68,14 @@ public class FileLoggerConfiguration {
   public boolean isValidRule(LogginLevel level) {
     return level.ordinal() <= this.level.ordinal();
   }
+
+  @Override
+  public String toString() {
+    return "FileLoggerConfiguration{" +
+        "FILE:" + nameFile + '\'' +
+        ", LEVEL=" + level +
+        ", MAX-SIZE=" + maxSizeByte +
+        ", FORMAT='" + nameFormat + '\'' +
+        '}';
+  }
 }
