@@ -1,4 +1,4 @@
 FILE:.\src\com\javapro\lesson10\file\log_
-LEVEL:DEBUG
+LEVEL:INFO
 MAX-SIZE:500
 FORMAT:.txt
