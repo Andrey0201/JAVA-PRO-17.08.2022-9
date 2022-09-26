@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class FileLoggerConfigurationLoader {
 
-  private final String FILE_PATH = ".\\src\\com\\javapro\\lesson10\\file\\config.txt";
+  private final String FILE_PATH = ".\\src\\com\\javapro\\lesson10\\config.txt";
 
   public FileLoggerConfiguration load() {
     return parsConfigurationString();
