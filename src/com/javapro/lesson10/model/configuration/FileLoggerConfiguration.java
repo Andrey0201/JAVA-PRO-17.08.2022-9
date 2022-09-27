@@ -1,4 +1,4 @@
-package com.javapro.lesson10.model;
+package com.javapro.lesson10.model.configuration;
 
 import com.javapro.lesson10.api.LoggingLevel;
 

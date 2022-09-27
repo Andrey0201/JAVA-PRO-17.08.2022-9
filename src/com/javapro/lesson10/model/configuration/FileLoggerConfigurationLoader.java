@@ -1,12 +1,13 @@
-package com.javapro.lesson10.model;
+package com.javapro.lesson10.model.configuration;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class FileLoggerConfigurationLoader {
+public class FileLoggerConfigurationLoader implements ILoggerConfigurationLoader {
 
+    @Override
     public FileLoggerConfiguration load() {
         FileLoggerConfiguration configuration = new FileLoggerConfiguration();
         try (InputStream input = new FileInputStream("my.config.properties")) {

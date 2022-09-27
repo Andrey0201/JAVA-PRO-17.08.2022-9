@@ -1,8 +1,11 @@
 package com.javapro.lesson10.model;
 
 
-import com.javapro.lesson10.api.FileLoggerAvaible;
+import com.javapro.lesson10.model.configuration.FileLoggerConfigurationLoader;
+import com.javapro.lesson10.model.configuration.ILoggerConfigurationLoader;
+import com.javapro.lesson10.api.LoggerAvailable;
 import com.javapro.lesson10.api.LoggingLevel;
+import com.javapro.lesson10.model.configuration.ScannerFileLoggerConfiguration;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,9 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class FileLogger implements FileLoggerAvaible {
+public class FileLogger implements LoggerAvailable {
 
-    FileLoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
+    ILoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
+
 
     Date date = new Date(System.currentTimeMillis());
     SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HH-mm-ss");
@@ -29,34 +33,44 @@ public class FileLogger implements FileLoggerAvaible {
         writeFile(str, LoggingLevel.INFO);
     }
 
+
     private File createFile() {
+
         return new File(loader.load().getNameFile() + totalName);
     }
 
-    public File getFile() {
+    private File getFile() {
         File dir = new File(loader.load().getNameFile());
-        File[] files = dir.listFiles();
-        if (files == null || files.length == 0) {
-            return createFile();
-        } else {
-            File lastModifiedFile = files[0];
-            for (int i = 1; i < files.length; i++) {
-                if (lastModifiedFile.lastModified() < files[i].lastModified()) {
-                    lastModifiedFile = files[i];
+        try {
+            File[] files = dir.listFiles();
+            if (files == null || files.length == 0) {
+                return createFile();
+            } else {
+                File lastModifiedFile = files[0];
+                for (int i = 1; i < files.length; i++) {
+                    if (lastModifiedFile.lastModified() < files[i].lastModified()) {
+                        lastModifiedFile = files[i];
+                    }
+                }
+                if (lastModifiedFile.length() <= loader.load().getMaxSizeByte()) {
+                    return lastModifiedFile;
+                } else {
+                    return createFile();
                 }
             }
-            if (lastModifiedFile.length() <= loader.load().getMaxSizeByte()) {
-                return lastModifiedFile;
-            } else {
-                return createFile();
-            }
+        } catch (SecurityException ex) {
+            System.out.println(ex.getMessage());
+            return null;
         }
     }
+
 
     private void writeFile(String str, LoggingLevel level) {
         String newStr = String.format("[%s][%s] Сообщение:[%s]\n", formatter.format(date), level, str);
         if (loader.load().isValidRule(level)) {
-            try (FileWriter writer = new FileWriter(getFile(), true)) {
+            File temp  = getFile();
+            if (temp == null) return;
+            try (FileWriter writer = new FileWriter(temp, true)) {
                 writer.append(newStr);
             } catch (IOException ex) {
                 ex.printStackTrace();
