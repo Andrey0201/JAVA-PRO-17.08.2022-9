@@ -21,6 +21,4 @@ public class FileLoggerConfigurationLoader {
         }
         return configuration;
     }
-
-
 }

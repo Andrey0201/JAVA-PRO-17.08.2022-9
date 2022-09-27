@@ -12,24 +12,15 @@ import java.util.Properties;
 
 public class Main {
 
-
-
-  public static void main(String[] args) {
-    FileLoggerAvaible fileLogger = new FileLogger();
-    int i  = 2;
-    while(i>0){
-    fileLogger.debug("Что-то пошло не так");
-    fileLogger.info("Информация");
-    i--;}
-    FileLoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
-    System.out.println(loader.load().toString());
-
-    try(InputStream input = new FileInputStream("my.config.properties")){
-      Properties prop =new Properties();
-    prop.load(input);}
-        catch (IOException e){
-      System.out.println(e.getMessage());
+    public static void main(String[] args) {
+        FileLoggerAvaible fileLogger = new FileLogger();
+        int i = 2;
+        while (i > 0) {
+            fileLogger.debug("Что-то пошло не так");
+            fileLogger.info("Информация");
+            i--;
+        }
+        FileLoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
+        System.out.println(loader.load().toString());
     }
-
-  }
 }

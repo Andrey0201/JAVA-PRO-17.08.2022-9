@@ -31,7 +31,6 @@ public class FileLoggerConfiguration {
       case "INFO" -> this.level = LogginLevel.INFO;
       case "DEBUG" -> this.level = LogginLevel.DEBUG;
     }
-
   }
 
   public int getMaxSizeByte() {
