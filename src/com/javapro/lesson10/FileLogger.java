@@ -26,7 +26,6 @@ public class FileLogger implements FileLoggerAvaible {
 
     @Override
     public void info(String str) {
-
         writeFile(str, LogginLevel.INFO);
     }
 
