@@ -1,11 +1,9 @@
-package com.javapro.lesson10.model;
+package com.javapro.lesson10.model.fileconfig;
 
 
-import com.javapro.lesson10.model.configuration.FileLoggerConfigurationLoader;
-import com.javapro.lesson10.model.configuration.ILoggerConfigurationLoader;
+import com.javapro.lesson10.api.ILoggerConfigurationLoader;
 import com.javapro.lesson10.api.LoggerAvailable;
 import com.javapro.lesson10.api.LoggingLevel;
-import com.javapro.lesson10.model.configuration.ScannerFileLoggerConfiguration;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +15,6 @@ import java.util.Date;
 public class FileLogger implements LoggerAvailable {
 
     ILoggerConfigurationLoader loader = new FileLoggerConfigurationLoader();
-
 
     Date date = new Date(System.currentTimeMillis());
     SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy-HH-mm-ss");
@@ -32,7 +29,6 @@ public class FileLogger implements LoggerAvailable {
     public void info(String str) {
         writeFile(str, LoggingLevel.INFO);
     }
-
 
     private File createFile() {
 
@@ -64,11 +60,10 @@ public class FileLogger implements LoggerAvailable {
         }
     }
 
-
     private void writeFile(String str, LoggingLevel level) {
         String newStr = String.format("[%s][%s] Сообщение:[%s]\n", formatter.format(date), level, str);
         if (loader.load().isValidRule(level)) {
-            File temp  = getFile();
+            File temp = getFile();
             if (temp == null) return;
             try (FileWriter writer = new FileWriter(temp, true)) {
                 writer.append(newStr);
