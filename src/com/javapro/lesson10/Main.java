@@ -5,9 +5,6 @@ import com.javapro.lesson10.api.LoggerAvailable;
 import com.javapro.lesson10.model.fileconfig.FileLoggerConfigurationLoader;
 import com.javapro.lesson10.model.stdoutconfig.StdoutLogger;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 
 public class Main {
 
