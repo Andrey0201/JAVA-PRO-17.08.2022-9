@@ -1,6 +1,5 @@
 package com.javapro.lesson10.model;
 
-
 import com.javapro.lesson10.api.FileLoggerAvaible;
 import com.javapro.lesson10.api.LoggingLevel;
 
