@@ -1,11 +1,11 @@
-package com.javapro.lesson10;
+package com.javapro.lesson10.model;
 
-import com.javapro.lesson10.api.LogginLevel;
+import com.javapro.lesson10.api.LoggingLevel;
 
 public class FileLoggerConfiguration {
 
   private String nameFile;
-  private LogginLevel level;
+  private LoggingLevel level;
   private int maxSizeByte;
   private String nameFormat;
 
@@ -22,14 +22,14 @@ public class FileLoggerConfiguration {
     this.nameFile = nameFile;
   }
 
-  public LogginLevel getLevel() {
+  public LoggingLevel getLevel() {
     return level;
   }
 
   public void setLevel(String level) {
     switch (level) {
-      case "INFO" -> this.level = LogginLevel.INFO;
-      case "DEBUG" -> this.level = LogginLevel.DEBUG;
+      case "INFO" -> this.level = LoggingLevel.INFO;
+      case "DEBUG" -> this.level = LoggingLevel.DEBUG;
     }
   }
 
@@ -56,7 +56,7 @@ public class FileLoggerConfiguration {
     this.nameFormat = nameFormat;
   }
 
-  public boolean isValidRule(LogginLevel level) {
+  public boolean isValidRule(LoggingLevel level) {
     return level.ordinal() <= this.level.ordinal();
   }
 

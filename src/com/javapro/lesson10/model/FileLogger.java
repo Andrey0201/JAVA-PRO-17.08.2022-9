@@ -1,8 +1,8 @@
-package com.javapro.lesson10;
+package com.javapro.lesson10.model;
 
 
 import com.javapro.lesson10.api.FileLoggerAvaible;
-import com.javapro.lesson10.api.LogginLevel;
+import com.javapro.lesson10.api.LoggingLevel;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,12 +21,12 @@ public class FileLogger implements FileLoggerAvaible {
 
     @Override
     public void debug(String str) {
-        writeFile(str, LogginLevel.DEBUG);
+        writeFile(str, LoggingLevel.DEBUG);
     }
 
     @Override
     public void info(String str) {
-        writeFile(str, LogginLevel.INFO);
+        writeFile(str, LoggingLevel.INFO);
     }
 
     private File createFile() {
@@ -53,13 +53,13 @@ public class FileLogger implements FileLoggerAvaible {
         }
     }
 
-    private void writeFile(String str, LogginLevel level) {
+    private void writeFile(String str, LoggingLevel level) {
         String newStr = String.format("[%s][%s] Сообщение:[%s]\n", formatter.format(date), level, str);
         if (loader.load().isValidRule(level)) {
             try (FileWriter writer = new FileWriter(getFile(), true)) {
                 writer.append(newStr);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
     }

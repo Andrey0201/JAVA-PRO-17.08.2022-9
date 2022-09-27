@@ -1,4 +1,4 @@
-package com.javapro.lesson10;
+package com.javapro.lesson10.model;
 
 import java.io.FileInputStream;
 import java.io.IOException;

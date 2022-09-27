@@ -1,8 +1,8 @@
-import com.javapro.lesson10.FileLogger;
-import com.javapro.lesson10.FileLoggerConfigurationLoader;
+package com.javapro.lesson10;
+
+import com.javapro.lesson10.model.FileLogger;
 import com.javapro.lesson10.api.FileLoggerAvaible;
-
-
+import com.javapro.lesson10.model.FileLoggerConfigurationLoader;
 
 
 public class Main {
