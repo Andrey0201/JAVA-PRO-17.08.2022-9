@@ -1,4 +1,4 @@
-package com.javapro.lesson10;
+package com.javapro.lesson10.api;
 
 public class FileMaxSizeReachedException extends RuntimeException {
 

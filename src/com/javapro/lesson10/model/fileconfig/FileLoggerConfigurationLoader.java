@@ -1,4 +1,4 @@
-package com.javapro.lesson10;
+package com.javapro.lesson10.model.fileconfig;
 
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,11 +1,9 @@
-import com.javapro.lesson10.FileLogger;
-import com.javapro.lesson10.FileLoggerConfigurationLoader;
-import com.javapro.lesson10.FileMaxSizeReachedException;
-import com.javapro.lesson10.api.FileLoggerAvaible;
+package com.javapro.lesson10;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
+import com.javapro.lesson10.model.fileconfig.FileLogger;
+import com.javapro.lesson10.model.fileconfig.FileLoggerConfigurationLoader;
+import com.javapro.lesson10.api.FileMaxSizeReachedException;
+import com.javapro.lesson10.api.FileLoggerAvaible;
 
 
 public class Main {

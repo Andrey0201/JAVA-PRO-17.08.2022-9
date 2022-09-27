@@ -1,6 +1,7 @@
-package com.javapro.lesson10;
+package com.javapro.lesson10.model.fileconfig;
 
 
+import com.javapro.lesson10.api.FileMaxSizeReachedException;
 import com.javapro.lesson10.api.FileLoggerAvaible;
 import com.javapro.lesson10.api.LoggingLevel;
 
