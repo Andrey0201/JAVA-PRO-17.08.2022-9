@@ -20,6 +20,5 @@ public class Main {
         LoggerAvailable outLogger = new StdoutLogger();
         outLogger.debug("!!!Что-то пошло не так!!!");
         outLogger.info("!!!Информация!!!");
-
     }
 }
