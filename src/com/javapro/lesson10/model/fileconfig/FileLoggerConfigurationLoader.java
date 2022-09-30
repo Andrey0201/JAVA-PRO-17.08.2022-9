@@ -2,11 +2,8 @@ package com.javapro.lesson10.model.fileconfig;
 
 import com.javapro.lesson10.api.ILoggerConfigurationLoader;
 
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
 import java.util.Properties;
 
 public class FileLoggerConfigurationLoader implements ILoggerConfigurationLoader {
